@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+              http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/cache
+              http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!--    <ehcache:annotation-driven cache-manager="cacheManager"/>-->
+
+    <!--    <ehcache:config cache-manager="cacheManager">-->
+    <!--        <ehcache:evict-expired-elements interval="60"/>-->
+    <!--    </ehcache:config>-->
+
+    <!--    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:cacheManagerName="swingShotCache" p:shared="true"/>-->
+
+    <cache:annotation-driven cache-manager="ehCacheManager"/>
+
+    <bean id="ehCacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
+        <property name="cacheManager">
+            <bean class="org.springframework.cache.jcache.JCacheManagerFactoryBean" p:cacheManagerUri="classpath:ehcache.xml"/>
+        </property>
+    </bean>
+
+</beans>

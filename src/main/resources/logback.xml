@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <contextName>ehcache-cluster</contextName>
+
+    <jmxConfigurator/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/ehcache-cluster.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/ehcache-cluster-%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %X{uuid} %X{sessionid} [%thread] %-5level %logger{0} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
+    <logger name="net.sf.ehcache.distribution" level="WARN"/>
+    <logger name="com.ehcache.cluster" level="TRACE"/>
+
+    <!-- to see errors when resolving RequestBody objects -->
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" level="DEBUG"/>
+
+    <!-- http client logging -->
+    <logger name="org.apache.http.wire" level="WARN"/>
+    <logger name="httpclient.wire" level="WARN"/>
+    <logger name="httpclient.wire.header" level="WARN"/>
+
+    <root level="TRACE">
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

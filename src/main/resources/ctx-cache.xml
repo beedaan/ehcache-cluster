@@ -7,14 +7,6 @@
               http://www.springframework.org/schema/cache
               http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-    <!--    <ehcache:annotation-driven cache-manager="cacheManager"/>-->
-
-    <!--    <ehcache:config cache-manager="cacheManager">-->
-    <!--        <ehcache:evict-expired-elements interval="60"/>-->
-    <!--    </ehcache:config>-->
-
-    <!--    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:cacheManagerName="swingShotCache" p:shared="true"/>-->
-
     <cache:annotation-driven cache-manager="ehCacheManager"/>
 
     <bean id="ehCacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
